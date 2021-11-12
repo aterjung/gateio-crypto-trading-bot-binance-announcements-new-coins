@@ -1,3 +1,4 @@
+from http.server import HTTPServer
 from trade_client import *
 from store_order import *
 from logger import logger
@@ -13,6 +14,7 @@ import json
 from json import JSONEncoder
 import os.path
 import sys, os
+from rest_server import RestServer, start_server
 
 old_coins = ["OTHERCRAP"]
 
@@ -77,6 +79,9 @@ def main():
 
     t2 = threading.Thread(target=get_all_currencies)
     t2.start()
+
+    t3 = threading.Thread(target=start_server)
+    t3.start()
 
     try:
         while True:
